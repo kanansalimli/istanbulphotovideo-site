@@ -73,8 +73,25 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:col
 .frame img{width:100%;height:100%;object-fit:cover;display:block}
 @media (max-width:820px){.hero{grid-template-columns:1fr;padding-block:36px 28px}.frame{max-height:420px;aspect-ratio:auto;height:380px}}
 
+/* intro, about, team */
+.intro{padding-block:40px 0;text-align:center}
+.intro h1{font-size:clamp(38px,6vw,64px);margin-top:6px}
+.intro h1 em{font-style:normal;color:var(--tram)}
+.ctas-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;padding-block:8px 8px}
+.about{padding-block:64px 48px}
+.about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:start}
+.about h2{font-size:clamp(32px,4.6vw,52px)}
+.about-text{display:grid;gap:16px;color:var(--muted);font-size:17px;max-width:38em}
+.about .facts{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:14px;margin-top:6px}
+.about .facts b{color:var(--ink)}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.member{display:flex;align-items:center;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.avatar{width:72px;height:72px;border-radius:50%;flex:none;display:grid;place-items:center;background:var(--tram);color:var(--tram-ink);font-family:var(--display);font-size:30px}
+.member h3{font-size:24px}
+.member p{color:var(--muted);font-size:15px}
+@media (max-width:820px){.about-grid{grid-template-columns:1fr;gap:20px}}
 /* coverflow */
-.cf{position:relative;height:clamp(420px,62vw,600px);margin-block:28px 40px;overflow:hidden;touch-action:pan-y}
+.cf{position:relative;height:clamp(440px,62vw,620px);margin-block:24px 44px;overflow:hidden;touch-action:pan-y}
 .cf-track{position:absolute;inset:0}
 .cf-card{position:absolute;top:0;left:50%;width:min(76vw,400px);height:100%;margin-left:calc(min(76vw,400px) / -2);border-radius:22px;overflow:hidden;background:var(--line);box-shadow:0 18px 40px rgba(0,0,0,.28);transition:transform .55s cubic-bezier(.2,.7,.2,1),opacity .55s,filter .55s;text-decoration:none;color:#fff;will-change:transform}
 .cf-card img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;user-select:none}
@@ -181,31 +198,17 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
   <div class="wrap nav">
     <a class="logo" href="#top">Istanbul <span>Photo·Video</span></a>
     <nav class="navlinks" aria-label="Sections">
-      <a href="#packages">Packages</a><a href="#gallery">Gallery</a><a href="#how">How it works</a><a href="#why">Why us</a><a href="#faq">FAQ</a>
+      <a href="#packages">Packages</a><a href="#about">About</a><a href="#team">Team</a><a href="#gallery">Gallery</a><a href="#how">How it works</a><a href="#faq">FAQ</a>
     </nav>
     <a class="btn" href="https://wa.me/905513954420?text=Hi!%20I%27d%20like%20to%20book%20a%20photo%20shoot%20in%20Istanbul." target="_blank" rel="noopener"><svg><use href="#wa"/></svg>WhatsApp</a>
   </div>
 </header>
 
 <main id="top">
-  <div class="wrap hero">
-    <div>
-      <p class="eyebrow">Private photographer · Istanbul</p>
-      <h1>Your Istanbul trip, <em>photographed properly.</em></h1>
-      <p class="lead">Rooftop flying dress shoots over the old city, golden hour at Galata, the red tram on İstiklal. Tell us your dates on WhatsApp and we plan the shoot with you, pickup from your hotel included on rooftop packages.</p>
-      <div class="ctas">
-        <a class="btn" href="https://wa.me/905513954420?text=Hi!%20I%27d%20like%20to%20book%20a%20photo%20shoot%20in%20Istanbul.%20My%20dates%20are%3A" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Check my dates</a>
-        <a class="btn ghost" href="#gallery">See real photos</a>
-      </div>
-      <div class="facts">
-        <span><b>From 100 €</b> per session</span>
-        <span><b>Office</b> on İstiklal, Taksim</span>
-        <span><b>Reply</b> any time of day</span>
-      </div>
-    </div>
-    
+  <div class="wrap intro">
+    <p class="eyebrow">Private photographer · Istanbul</p>
+    <h1>Photoshoot in <em>Istanbul</em></h1>
   </div>
-
   <div class="cf" id="cf" aria-roledescription="carousel" aria-label="Photoshoot packages">
     <div class="cf-track">
       <a class="cf-card" href="#pkg-premium" data-i="0"><img src="photos/suleymaniye-red-petal-dress.jpg" alt="Istanbul Premium Story" style="object-position:center" fetchpriority="high"><span class="cf-cap"><small>01</small><b>Istanbul Premium Story</b><em>500 €</em></span></a>
@@ -220,6 +223,39 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
     <button class="cf-nav next" type="button" aria-label="Next package">›</button>
     <div class="cf-dots" role="tablist"></div>
   </div>
+  <div class="wrap ctas-row">
+    <a class="btn" href="https://wa.me/905513954420?text=Hi!%20I%27d%20like%20to%20book%20a%20photo%20shoot%20in%20Istanbul.%20My%20dates%20are%3A" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Check my dates</a>
+    <a class="btn ghost" href="#packages">See all packages</a>
+  </div>
+
+  <section id="about" class="about">
+    <div class="wrap about-grid">
+      <div>
+        <p class="eyebrow">About us</p>
+        <h2>Your own photographer in Istanbul</h2>
+      </div>
+      <div class="about-text">
+        <p>We are a small photo and video team based on İstiklal Street in Taksim. Every day we shoot on the same rooftops, streets and waterfronts, so we know where the light falls at each hour and which corners stay quiet.</p>
+        <p>You don't need to know how to pose. We guide you through every shot, pick the locations with you and, on rooftop shoots, pick you up from your hotel. Honeymoons, proposals, families, friends on a trip or a solo traveller: tell us your dates and we plan the shoot around you.</p>
+        <div class="facts">
+          <span><b>From 100 €</b> per session</span>
+          <span><b>Office</b> on İstiklal, Taksim</span>
+          <span><b>Reply</b> any time of day</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="team" class="team" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head"><div><p class="eyebrow">Our team</p><h2>Who takes your photos</h2></div></div>
+      <div class="team-grid">
+        <div class="member"><div class="avatar" aria-hidden="true">K</div><div><h3>Kenan</h3><p>Founder &amp; photographer</p></div></div>
+        <div class="member"><div class="avatar" aria-hidden="true">M</div><div><h3>Mehmet</h3><p>Photographer &amp; editor</p></div></div>
+      </div>
+    </div>
+  </section>
+
 
   <div class="band"><div class="wrap">
     <span>Free hotel pickup on rooftop shoots</span><span>All original photos delivered</span><span>Edited reels included</span><span>English-speaking team</span>
