@@ -59,7 +59,9 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:col
 @media (max-width:760px){.navlinks{display:none}.nav .btn{padding:9px 14px;font-size:14px}}
 
 /* hero */
-.hero{padding-block:56px 40px;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.hero{padding-block:48px 8px;display:grid;grid-template-columns:1fr;justify-items:center;text-align:center}
+.hero .lead{margin-inline:auto}
+.hero .ctas,.hero .facts{justify-content:center}
 .hero h1{font-size:clamp(42px,7vw,80px)}
 .hero h1 em{font-style:normal;color:var(--tram)}
 .hero .lead{margin-top:20px;font-size:18px;color:var(--muted);max-width:34em}
@@ -71,6 +73,21 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:col
 .frame img{width:100%;height:100%;object-fit:cover;display:block}
 @media (max-width:820px){.hero{grid-template-columns:1fr;padding-block:36px 28px}.frame{max-height:420px;aspect-ratio:auto;height:380px}}
 
+/* coverflow */
+.cf{position:relative;height:clamp(420px,62vw,600px);margin-block:28px 40px;overflow:hidden;touch-action:pan-y}
+.cf-track{position:absolute;inset:0}
+.cf-card{position:absolute;top:0;left:50%;width:min(76vw,400px);height:100%;margin-left:calc(min(76vw,400px) / -2);border-radius:22px;overflow:hidden;background:var(--line);box-shadow:0 18px 40px rgba(0,0,0,.28);transition:transform .55s cubic-bezier(.2,.7,.2,1),opacity .55s,filter .55s;text-decoration:none;color:#fff;will-change:transform}
+.cf-card img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;user-select:none}
+.cf-cap{position:absolute;inset:auto 0 0 0;padding:60px 20px 20px;background:linear-gradient(transparent,rgba(0,0,0,.78));display:grid;gap:2px;text-align:left}
+.cf-cap small{color:var(--gold);font-weight:600;letter-spacing:.1em;font-size:13px}
+.cf-cap b{font-family:var(--display);font-weight:500;font-size:clamp(22px,4.2vw,28px);line-height:1.15}
+.cf-cap em{font-style:normal;font-size:15px;opacity:.9}
+.cf-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:30;width:46px;height:46px;border-radius:50%;border:0;background:rgba(0,0,0,.45);color:#fff;font-size:30px;line-height:1;cursor:pointer;display:grid;place-items:center}
+.cf-nav.prev{left:max(12px,env(safe-area-inset-left,0px))}.cf-nav.next{right:max(12px,env(safe-area-inset-right,0px))}
+.cf-dots{position:absolute;left:0;right:0;bottom:-30px;display:flex;justify-content:center;gap:8px}
+.cf-dots button{width:8px;height:8px;border-radius:50%;border:0;padding:0;background:var(--line);cursor:pointer}
+.cf-dots button[aria-selected="true"]{background:var(--tram);width:22px;border-radius:4px}
+@media (prefers-reduced-motion:reduce){.cf-card{transition:none}}
 /* band */
 .band{background:var(--tram);color:var(--tram-ink)}
 .band .wrap{padding-block:18px;display:flex;flex-wrap:wrap;gap:10px 34px;justify-content:center;font-size:15px;font-weight:500}
@@ -186,7 +203,22 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
         <span><b>Reply</b> any time of day</span>
       </div>
     </div>
-    <div class="frame"><img src="photos/rooftop-purple-flying-dress.jpg" alt="Woman in a purple flying dress on an Istanbul rooftop with seagulls and the Golden Horn behind her" fetchpriority="high"></div>
+    
+  </div>
+
+  <div class="cf" id="cf" aria-roledescription="carousel" aria-label="Photoshoot packages">
+    <div class="cf-track">
+      <a class="cf-card" href="#pkg-premium" data-i="0"><img src="photos/suleymaniye-red-petal-dress.jpg" alt="Istanbul Premium Story" style="object-position:center" fetchpriority="high"><span class="cf-cap"><small>01</small><b>Istanbul Premium Story</b><em>500 €</em></span></a>
+      <a class="cf-card" href="#pkg-rooftop" data-i="1"><img src="photos/rooftop-blue-flying-dress.jpg" alt="Rooftop & Flying Dress" style="object-position:center 40%" fetchpriority="high"><span class="cf-cap"><small>02</small><b>Rooftop & Flying Dress</b><em>from 145 €</em></span></a>
+      <a class="cf-card" href="#pkg-iconic" data-i="2"><img src="photos/galata-flowers.jpg" alt="Galata & Ortaköy" style="object-position:center 30%" fetchpriority="high"><span class="cf-cap"><small>03</small><b>Galata & Ortaköy</b><em>from 100 €</em></span></a>
+      <a class="cf-card" href="#pkg-street" data-i="3"><img src="photos/istiklal-tram-couple.jpg" alt="Street Photo Walk" style="object-position:center 35%" loading="lazy"><span class="cf-cap"><small>04</small><b>Street Photo Walk</b><em>from 3,000 TL</em></span></a>
+      <a class="cf-card" href="#pkg-custom" data-i="4"><img src="photos/galata-bridge-wedding.jpg" alt="Weddings & Proposals" style="object-position:center" loading="lazy"><span class="cf-cap"><small>05</small><b>Weddings & Proposals</b><em>Quote</em></span></a>
+      <a class="cf-card" href="#pkg-rooftop" data-i="5"><img src="photos/rooftop-green-kaftan.jpg" alt="Ottoman Kaftan Rooftop" style="object-position:center 30%" loading="lazy"><span class="cf-cap"><small>06</small><b>Ottoman Kaftan Rooftop</b><em>from 145 €</em></span></a>
+      <a class="cf-card" href="#pkg-rooftop" data-i="6"><img src="photos/rooftop-red-pink-dresses.jpg" alt="Friends on the Rooftop" style="object-position:center 30%" loading="lazy"><span class="cf-cap"><small>07</small><b>Friends on the Rooftop</b><em>from 145 €</em></span></a>
+    </div>
+    <button class="cf-nav prev" type="button" aria-label="Previous package">‹</button>
+    <button class="cf-nav next" type="button" aria-label="Next package">›</button>
+    <div class="cf-dots" role="tablist"></div>
   </div>
 
   <div class="band"><div class="wrap">
@@ -201,7 +233,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
       </div>
 
       <div class="pkgs">
-        <article class="pkg star">
+        <article class="pkg star" id="pkg-premium">
           <div style="display:grid;gap:16px;min-width:0">
             <span class="badge">Most complete</span>
             <div class="top">
@@ -223,7 +255,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
           </div>
         </article>
 
-        <article class="pkg">
+        <article class="pkg" id="pkg-rooftop">
           <div class="shot"><img src="photos/rooftop-blue-flying-dress.jpg" alt="Blue flying dress on a rooftop above the Golden Horn" loading="lazy" style="object-position:center 60%"></div>
           <div class="top">
             <div><h3>Rooftop & Flying Dress</h3><p class="where">Rooftop near the Grand Bazaar</p></div>
@@ -239,7 +271,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
           <a class="btn" href="https://wa.me/905513954420?text=Hi!%20I%27m%20interested%20in%20the%20Rooftop%20%26%20Flying%20Dress%20package." target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Book rooftop</a>
         </article>
 
-        <article class="pkg">
+        <article class="pkg" id="pkg-iconic">
           <div class="shot"><img src="photos/galata-flowers.jpg" alt="Woman with daisies on a Galata street with the tower behind" loading="lazy" style="object-position:center 30%"></div>
           <div class="top">
             <div><h3>Iconic Locations</h3><p class="where">1-hour outdoor shoot</p></div>
@@ -258,7 +290,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
           <a class="btn" href="https://wa.me/905513954420?text=Hi!%20I%27m%20interested%20in%20an%20Iconic%20Locations%20shoot%20(Galata%20or%20Ortak%C3%B6y)." target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Book Galata or Ortaköy</a>
         </article>
 
-        <article class="pkg">
+        <article class="pkg" id="pkg-street">
           <div class="shot"><img src="photos/istiklal-tram-couple.jpg" alt="Couple embracing on İstiklal Street with the red tram behind" loading="lazy" style="object-position:center 35%"></div>
           <div class="top">
             <div><h3>Street Photo Walk</h3><p class="where">İstiklal, Galata, Karaköy, Nişantaşı, Fatih</p></div>
@@ -275,7 +307,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
           <a class="btn" href="https://wa.me/905513954420?text=Hi!%20I%27m%20interested%20in%20a%20Street%20Photo%20Walk." target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Book a photo walk</a>
         </article>
 
-        <article class="pkg">
+        <article class="pkg" id="pkg-custom">
           <div class="shot"><img src="photos/galata-bridge-wedding.jpg" alt="Bride and groom on Galata Bridge above the Bosphorus" loading="lazy" style="object-position:center"></div>
           <div class="top">
             <div><h3>Custom Project</h3><p class="where">2–4 hours, anywhere in Istanbul</p></div>
@@ -367,6 +399,20 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 <footer><div class="wrap"><span>© 2026 Istanbul Photo Video</span><span>Prices may change. Confirm the current price on WhatsApp.</span></div></footer>
 
 <a class="fab" href="https://wa.me/905513954420?text=Hi!%20I%27d%20like%20to%20book%20a%20photo%20shoot%20in%20Istanbul." target="_blank" rel="noopener" aria-label="Message us on WhatsApp"><svg><use href="#wa"/></svg></a>
+
+<script>
+(()=>{const root=document.getElementById('cf');if(!root)return;const cards=[...root.querySelectorAll('.cf-card')];const n=cards.length;const dots=root.querySelector('.cf-dots');let cur=0,timer=null;
+cards.forEach((c,i)=>{const b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.setAttribute('aria-label','Show '+c.querySelector('b').textContent);b.onclick=()=>{go(i);restart()};dots.appendChild(b)});
+function layout(){const w=cards[0].offsetWidth;cards.forEach((c,i)=>{let d=i-cur;if(d>n/2)d-=n;if(d<-n/2)d+=n;const a=Math.abs(d);const x=d*w*0.62,sc=a===0?1:Math.max(.62,.82-(a-1)*.1),rot=d===0?0:(d>0?-14:14);c.style.transform=`translateX(${x}px) scale(${sc}) rotateY(${rot}deg)`;c.style.zIndex=20-a;c.style.opacity=a>2?0:1;c.style.filter=a===0?'none':'brightness(.6)';c.tabIndex=a===0?0:-1;c.setAttribute('aria-hidden',a===0?'false':'true')});[...dots.children].forEach((b,i)=>b.setAttribute('aria-selected',i===cur))}
+function go(i){cur=(i+n)%n;layout()}
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function restart(){clearInterval(timer);if(!reduce)timer=setInterval(()=>go(cur+1),3800)}
+root.querySelector('.prev').onclick=()=>{go(cur-1);restart()};root.querySelector('.next').onclick=()=>{go(cur+1);restart()};
+cards.forEach((c,i)=>c.addEventListener('click',e=>{if(i!==cur){e.preventDefault();go(i);restart()}}));
+let sx=null;root.addEventListener('pointerdown',e=>{sx=e.clientX});root.addEventListener('pointerup',e=>{if(sx===null)return;const dx=e.clientX-sx;sx=null;if(Math.abs(dx)>40){go(cur+(dx<0?1:-1));restart()}});
+root.addEventListener('mouseenter',()=>clearInterval(timer));root.addEventListener('mouseleave',restart);
+addEventListener('resize',layout);root.style.perspective='1200px';layout();restart()})();
+</script>
 
 </body>
 </html>
